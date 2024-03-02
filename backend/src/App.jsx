@@ -1,5 +1,11 @@
 function App() {
-  return <h1>Daily Sleep Tracker</h1>;
+  return (
+    <>
+      <div className="container">
+        <div className="brand-heading">Daily Sleep Tracker</div>
+      </div>
+    </>
+  );
 }
 
 export default App;
