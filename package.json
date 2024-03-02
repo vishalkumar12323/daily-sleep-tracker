@@ -1,0 +1,11 @@
+{
+  "name": "daily-sleep-tracker",
+  "version": "1.0.0",
+  "description": "<h1>-- Daily Sleep Tracker --</h1>\r <hr>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vishal",
+  "license": "ISC"
+}
