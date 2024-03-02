@@ -1,8 +1,10 @@
+import { SplashScreen } from "./components/SplashScreen";
+
 function App() {
   return (
     <>
-      <div className="container">
-        <div className="brand-heading">Daily Sleep Tracker</div>
+      <div className="container ">
+        <SplashScreen />
       </div>
     </>
   );
