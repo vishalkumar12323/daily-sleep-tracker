@@ -152,3 +152,120 @@
         }
     }
 }
+
+.loader {
+    margin-top: 1rem;
+
+    & h3 {
+        font-size: 1.3rem;
+        font-weight: 500;
+    }
+}
+
+.sp {
+    width: 30px;
+    height: 15px;
+    clear: both;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+.sp-bars {
+    position: relative;
+    width: 2px;
+    border: 1px var(--color) solid;
+    background-color: var(--color);
+    -webkit-animation: spBars 1s infinite linear;
+    animation: spBars 1s infinite linear;
+}
+
+.sp-bars::after,
+.sp-bars::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: inherit;
+    background-color: inherit;
+    top: -1px;
+}
+
+.sp-bars::before {
+    left: -10px;
+    border-radius: 10px;
+    -webkit-animation: spBarsBefore 1s infinite linear;
+    animation: spBarsBefore 1s infinite linear;
+}
+
+.sp-bars::after {
+    right: -10px;
+    border-radius: 10px;
+    -webkit-animation: spBarsAfter 1s infinite linear;
+    animation: spBarsAfter 1s infinite linear;
+}
+
+@keyframes spBarsBefore {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    25% {
+        transform: scale(1, 1.25);
+    }
+
+    50% {
+        transform: scale(1, 0.75);
+    }
+
+    75% {
+        transform: scale(1, 1);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes spBars {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    25% {
+        transform: scale(1, 1);
+    }
+
+    50% {
+        transform: scale(1, 1.25);
+    }
+
+    75% {
+        transform: scale(1, 1);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes spBarsAfter {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    25% {
+        transform: scale(1, 1);
+    }
+
+    50% {
+        transform: scale(1, 0.75);
+    }
+
+    75% {
+        transform: scale(1, 1.25);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}
