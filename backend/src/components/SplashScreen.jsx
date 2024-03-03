@@ -27,6 +27,10 @@ const SplashScreen = () => {
             <button className="btn">Signup menually</button>
           </div>
         </div>
+
+        <div className="skip">
+          <p>Continue or Skip</p>
+        </div>
       </div>
     </>
   );

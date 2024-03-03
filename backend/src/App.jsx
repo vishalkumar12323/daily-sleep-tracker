@@ -1,10 +1,12 @@
 import { SplashScreen } from "./components/SplashScreen";
+import { Signup } from "./pages/Signup";
 
 function App() {
   return (
     <>
       <div className="container ">
-        <SplashScreen />
+        {/* <SplashScreen /> */}
+        <Signup />
       </div>
     </>
   );
