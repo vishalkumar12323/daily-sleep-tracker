@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const NewEntry = () => {
+const NewEntry = ({ setShowEntries }) => {
   const [entries, setEnteries] = useState({
     date: "",
     sleepTime: "",
@@ -24,6 +24,7 @@ const NewEntry = () => {
       sleepTime: "",
       wakeUpTime: "",
     });
+    setShowEntries(false);
     console.log(entries);
   };
   return (

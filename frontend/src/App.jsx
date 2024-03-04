@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <div className="container ">
-        {/* {splashScreen && (
+        {splashScreen && (
           <SplashScreen
             handleAppearance={handleAppearance}
             setSplashScreen={setSplashScreen}
@@ -30,7 +30,7 @@ function App() {
             setShowSignupPage={setShowSignupPage}
             setSplashScreen={setSplashScreen}
           />
-        )} */}
+        )}
 
         <Home />
       </div>

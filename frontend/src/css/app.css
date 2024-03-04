@@ -60,7 +60,23 @@
             & .home {
 
                 & .main {
+                    width: 90%;
+                    display: contents;
+
+                    & .heading {
+                        padding-top: 2rem;
+                    }
+
+                    & .new-entry-button {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+
+
                     & .entries {
+                        margin: 5rem auto;
                         width: 85%;
                     }
                 }

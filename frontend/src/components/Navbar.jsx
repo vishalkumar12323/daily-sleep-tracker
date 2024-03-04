@@ -1,14 +1,13 @@
-import plusIcon from "/assets/plus-icon.svg";
-const Navbar = () => {
+const Navbar = ({ setShowEntries }) => {
   return (
     <>
       <div className="heading">
         <h1>daily sleep tracker</h1>
       </div>
       <div className="new-entry-button">
-        <button className="">
+        <button className="btn" onClick={() => setShowEntries(true)}>
           {" "}
-          <img src={plusIcon} alt={plusIcon} /> new entry
+          new entry
         </button>
       </div>
     </>
