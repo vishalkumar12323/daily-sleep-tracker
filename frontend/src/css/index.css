@@ -121,16 +121,12 @@
             & .signup-form {
                 width: 80%;
                 height: 100%;
+                position: relative;
+                margin-top: 1.5rem;
 
                 & .input-box {
                     width: 100%;
                     padding: 2px 0px;
-
-                    &.input-box:last-child {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 5px;
-                    }
 
                     & input {
                         width: 100%;
@@ -141,11 +137,21 @@
                         color: var(--background);
                     }
 
-                    & .google-btn {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        gap: 3px;
+                    & button {
+                        margin-top: 1rem;
+                    }
+                }
+
+                & .close-button {
+                    position: absolute;
+                    right: 5px;
+                    padding: 10px;
+
+                    & button {
+                        background-color: transparent;
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
                     }
                 }
             }

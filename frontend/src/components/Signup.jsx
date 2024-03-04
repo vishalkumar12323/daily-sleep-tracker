@@ -1,10 +1,19 @@
-import icon from "/assets/google.svg";
-
-const Signup = () => {
+import icon from "/assets/close-button.svg";
+const Signup = ({ setShowSignupPage, setSplashScreen }) => {
+  const disappear = () => {
+    setShowSignupPage(false);
+    setSplashScreen(true);
+  };
   return (
     <>
       <div className="fluid-container">
         <div className="signup-form">
+          <div className="close-button">
+            <button onClick={disappear}>
+              {" "}
+              <img src={icon} alt={icon} />{" "}
+            </button>
+          </div>
           <form>
             <div className="input-box">
               <label htmlFor="profile-image">Profile Image</label>
@@ -59,11 +68,8 @@ const Signup = () => {
                 placeholder="Password"
               />
             </div>
-            <div className="input-box">
+            <div className="input-box ">
               <button className="btn">create account</button>
-              <button className="btn google-btn">
-                <img src={icon} alt={icon} /> login with google
-              </button>
             </div>
           </form>
         </div>

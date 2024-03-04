@@ -1,8 +1,9 @@
+import React from "react";
 import icon from "/assets/sleep.gif";
 import googleIcon from "/assets/google.svg";
 import { useState } from "react";
-const SplashScreen = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+const SplashScreen = ({ handleAppearance, setSplashScreen }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   return (
     <>
@@ -21,6 +22,13 @@ const SplashScreen = () => {
         </div>
         {isAuthenticated === true ? (
           <>
+            <div className="loader">
+              <h3>Loading</h3>
+              <div className="sp sp-bars"></div>
+            </div>
+          </>
+        ) : (
+          <>
             {" "}
             <div className="buttons">
               <div className="google-login">
@@ -29,19 +37,14 @@ const SplashScreen = () => {
                 </button>
               </div>
               <div className="menually-login">
-                <button className="btn">Signup menually</button>
+                <button className="btn" onClick={handleAppearance}>
+                  Signup menually
+                </button>
               </div>
             </div>
-            <div className="skip">
+            <div className="skip" onClick={() => setSplashScreen(false)}>
               <p>Continue or Skip</p>
             </div>{" "}
-          </>
-        ) : (
-          <>
-            <div className="loader">
-              <h3>Loading</h3>
-              <div className="sp sp-bars"></div>
-            </div>
           </>
         )}
       </div>
