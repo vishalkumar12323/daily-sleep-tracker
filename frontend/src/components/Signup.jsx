@@ -22,7 +22,14 @@ const Signup = ({ setShowSignupPage, setSplashScreen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setFormData({
+      profileImage: "",
+      name: "",
+      lName: "",
+      age: "",
+      email: "",
+      password: "",
+    });
     console.log(formData);
   };
   const disappear = () => {

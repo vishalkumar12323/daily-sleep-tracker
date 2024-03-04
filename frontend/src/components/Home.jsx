@@ -1,3 +1,4 @@
+import { Navbar } from "./Navbar";
 import { NewEntry } from "./NewEntry";
 
 const Home = () => {
@@ -5,6 +6,8 @@ const Home = () => {
     <>
       <div className="home">
         <div className="main">
+          {/* <Navbar /> */}
+
           <NewEntry />
         </div>
       </div>
