@@ -3,7 +3,7 @@ import icon from "/assets/sleep.gif";
 import googleIcon from "/assets/google.svg";
 import { useState } from "react";
 const SplashScreen = ({ handleAppearance, setSplashScreen }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     <>

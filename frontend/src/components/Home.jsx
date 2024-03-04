@@ -1,5 +1,15 @@
+import { NewEntry } from "./NewEntry";
+
 const Home = () => {
-  return <h1>Home</h1>;
+  return (
+    <>
+      <div className="home">
+        <div className="main">
+          <NewEntry />
+        </div>
+      </div>
+    </>
+  );
 };
 
 export { Home };
