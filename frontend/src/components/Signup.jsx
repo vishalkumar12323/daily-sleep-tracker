@@ -1,4 +1,5 @@
 import { useState } from "react";
+import googleIcon from "/assets/google.svg";
 import icon from "/assets/close-button.svg";
 const Signup = ({ setShowSignupPage, setSplashScreen }) => {
   const [formData, setFormData] = useState({
@@ -38,7 +39,7 @@ const Signup = ({ setShowSignupPage, setSplashScreen }) => {
   };
   return (
     <>
-      <div className="fluid-container">
+      <div className="container">
         <div className="signup-form">
           <div className="close-button">
             <button onClick={disappear}>
@@ -119,6 +120,9 @@ const Signup = ({ setShowSignupPage, setSplashScreen }) => {
             <div className="input-box ">
               <button className="btn" onClick={handleSubmit}>
                 create account
+              </button>
+              <button className="btn">
+                <img src={googleIcon} alt={googleIcon} /> Continue with google
               </button>
             </div>
           </form>

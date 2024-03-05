@@ -7,11 +7,9 @@ const Home = () => {
 
   return (
     <>
-      <div className="home">
-        <div className="main">
-          <Navbar setShowEntries={setShowEntries} />
-          {showEntries && <NewEntry setShowEntries={setShowEntries} />}
-        </div>
+      <div className="main">
+        <Navbar setShowEntries={setShowEntries} />
+        {showEntries && <NewEntry setShowEntries={setShowEntries} />}
       </div>
     </>
   );

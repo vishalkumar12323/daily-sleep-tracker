@@ -24,62 +24,57 @@
             height: 100%;
             border-radius: 0px;
 
-            & .fluid-container {
-                width: 90%;
+            & .brand-heading {
+                font-size: 2rem;
+            }
 
-                & .brand-heading {
-                    font-size: 2rem;
-                }
+            & .buttons {
+                gap: 15px;
+                flex-direction: column-reverse;
+                justify-content: center;
+            }
 
-                & .buttons {
-                    gap: 15px;
-                    flex-direction: column-reverse;
-                    justify-content: center;
-                }
+            & .skip {
+                bottom: 20px;
+            }
 
-                & .skip {
-                    bottom: 20px;
-                }
+            & .signup-form {
+                margin-top: 1rem;
+                width: 100%;
+                height: 100%;
+                padding: 10px;
 
-                & .signup-form {
-                    margin-top: 1rem;
-                    width: 100%;
-                    height: 100%;
-                    padding: 10px;
+                & .input-box {
+                    padding: 5px 0px;
 
-                    & .input-box {
-                        padding: 5px 0px;
-
-                        & input {
-                            font-size: 1.1rem;
-                        }
+                    & input {
+                        font-size: 1.1rem;
                     }
                 }
             }
-
-            & .home {
-
-                & .main {
-                    width: 90%;
-                    display: contents;
-
-                    & .heading {
-                        padding-top: 2rem;
-                    }
-
-                    & .new-entry-button {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
+        }
 
 
+        & .main {
+            width: 90%;
+            display: contents;
 
-                    & .entries {
-                        margin: 5rem auto;
-                        width: 85%;
-                    }
-                }
+            & .heading {
+                padding-top: 2rem;
+            }
+
+            & .new-entry-button {
+                margin-top: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+
+
+            & .entries {
+                margin: 5rem auto;
+                width: 85%;
             }
         }
     }

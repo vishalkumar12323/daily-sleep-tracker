@@ -1,39 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SplashScreen } from "./components/SplashScreen";
 import { Signup } from "./components/Signup";
 import { Home } from "./components/Home";
+import { Error } from "./components/Error";
 
 function App() {
-  const [splashScreen, setSplashScreen] = useState(true);
-  const [showSignupPage, setShowSignupPage] = useState(false);
+  // const [isLoading, setIsLoading] = useState(true);
 
-  const handleAppearance = () => {
-    setShowSignupPage((previouseValue) => {
-      return !previouseValue;
-    });
-
-    setSplashScreen((previouseValue) => {
-      return !previouseValue;
-    });
-  };
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 5000);
+  // }, []);
   return (
     <>
-      <div className="container ">
-        {splashScreen && (
-          <SplashScreen
-            handleAppearance={handleAppearance}
-            setSplashScreen={setSplashScreen}
-          />
-        )}
-        {showSignupPage && (
-          <Signup
-            setShowSignupPage={setShowSignupPage}
-            setSplashScreen={setSplashScreen}
-          />
-        )}
-
-        <Home />
-      </div>
+      <SplashScreen />
+      {/* {isLoading ? (
+      ) : (
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/splash" element={<SplashScreen />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </BrowserRouter>
+      )} */}
     </>
   );
 }
