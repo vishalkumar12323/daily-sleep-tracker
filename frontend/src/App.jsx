@@ -6,17 +6,17 @@ import { Home } from "./components/Home";
 import { Error } from "./components/Error";
 
 function App() {
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 5000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 6000);
+  }, []);
   return (
     <>
-      <SplashScreen />
-      {/* {isLoading ? (
+      {isLoading ? (
+        <SplashScreen />
       ) : (
         <BrowserRouter>
           <Routes>
@@ -26,7 +26,7 @@ function App() {
             <Route path="*" element={<Error />} />
           </Routes>
         </BrowserRouter>
-      )} */}
+      )}
     </>
   );
 }

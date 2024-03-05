@@ -74,7 +74,15 @@
 
             & .entries {
                 margin: 5rem auto;
-                width: 85%;
+
+                & .form {
+                    width: 90%;
+                }
+            }
+
+            & .log-btn {
+                right: 50px;
+                bottom: -25px;
             }
         }
     }

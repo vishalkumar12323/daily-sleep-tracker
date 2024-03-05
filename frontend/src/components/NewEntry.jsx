@@ -30,7 +30,7 @@ const NewEntry = ({ setShowEntries }) => {
   return (
     <>
       <div className="entries">
-        <div>
+        <div className="form">
           <form>
             <div>
               <label htmlFor="date">set date</label>
