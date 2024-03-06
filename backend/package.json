@@ -7,7 +7,12 @@
     "start": "node index",
     "dev": "nodemon index"
   },
-  "keywords": ["daily", "sleep", "daily sleep tracker", "api"],
+  "keywords": [
+    "daily",
+    "sleep",
+    "daily sleep tracker",
+    "api"
+  ],
   "author": "vishal kumar",
   "license": "ISC",
   "dependencies": {
@@ -16,6 +21,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.18.3",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.2.1"
+    "mongoose": "^8.2.1",
+    "zod": "^3.22.4"
   }
 }
