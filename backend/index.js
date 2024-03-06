@@ -8,7 +8,7 @@ const port = process.env.PORT || 8081;
 
 app.use(cors());
 app.get("/", (req, res) => {
-  res.sendStatus(200).json({ message: "api for daily sleep tracker web app." });
+  res.status(200).json({ message: "api for daily sleep tracker web app." });
 });
 
 app.listen(port, () => {
