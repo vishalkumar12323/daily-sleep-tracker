@@ -3,10 +3,11 @@ import { Navbar } from "./Navbar";
 import { NewEntry } from "./NewEntry";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
+import { DataViewer } from "./DataViewer";
 
 const Home = () => {
   const [showEntries, setShowEntries] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <>
@@ -14,6 +15,7 @@ const Home = () => {
         <Navbar setShowEntries={setShowEntries} />
         {showEntries && <NewEntry setShowEntries={setShowEntries} />}
 
+        <DataViewer />
         <div className="log-btn">
           {isLoggedIn ? <LogoutButton /> : <LoginButton />}
         </div>

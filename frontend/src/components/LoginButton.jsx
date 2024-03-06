@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
+
 const LoginButton = () => {
   return (
     <>
-      <button className="login">
-        <img src="/assets/login.svg" alt="login icon" />
-      </button>
+      <Link to="/signup">
+        <button className="login">
+          <img src="/assets/login.svg" alt="login icon" />
+        </button>
+      </Link>
       <span>Sign in</span>
     </>
   );
