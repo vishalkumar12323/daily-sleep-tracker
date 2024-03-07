@@ -1,7 +1,23 @@
 const { Schema, model } = require("mongoose");
 
-const sleepSchema = new Schema({}, { timestamps: true });
+const sleepSchema = new Schema(
+  {
+    date: {
+      type: String,
+      required: true,
+    },
+    sleepingTime: {
+      type: String,
+      required: true,
+    },
+    wakeUpTime: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
-const Sleep = new model("sleep", sleepSchema);
+const SleepRecord = new model("sleep", sleepSchema);
 
-module.exports = Sleep;
+module.exports = SleepRecord;
