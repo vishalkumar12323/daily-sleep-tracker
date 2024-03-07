@@ -271,6 +271,14 @@ body {
             }
         }
     }
+
+    .error-page {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .loader {
@@ -293,8 +301,8 @@ body {
 .sp-bars {
     position: relative;
     width: 2px;
-    border: 1px var(--color) solid;
-    background-color: var(--color);
+    border: 1px var(--background) solid;
+    background-color: var(--background);
     -webkit-animation: spBars 1s infinite linear;
     animation: spBars 1s infinite linear;
 }
