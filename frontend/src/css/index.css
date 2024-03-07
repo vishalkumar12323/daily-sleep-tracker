@@ -4,7 +4,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: var(--color);
     font-family: "Noto Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -14,8 +13,8 @@
 }
 
 ::selection {
-    color: #ffd000;
-    background: transparent;
+    color: var(--color);
+    background: var(--background);
 }
 
 :root {
@@ -33,7 +32,8 @@
     text-transform: capitalize;
     cursor: pointer;
     border-radius: 5px;
-    border: 1px solid var(--color);
+    border: 1px solid var(--background);
+    color: var(--background);
     background: transparent;
     background-image: linear-gradient(to bottom, transparent, transparent);
     box-shadow: 10px 10px 0px 0px transparent;
@@ -41,8 +41,8 @@
 }
 
 .btn:hover {
-    color: var(--background);
-    background: var(--color);
+    color: var(--color);
+    background: var(--background);
 }
 
 body {
@@ -57,7 +57,8 @@ body {
     width: 90%;
     height: 95%;
     border-radius: 10px;
-    background-color: var(--background);
+    background-color: var(--color);
+    color: var(--background);
     -webkit-box-shadow: 35px 37px 300px -110px var(--secondary-background);
     -moz-box-shadow: 35px 37px 300px -110px var(--secondary-background);
     box-shadow: 35px 37px 300px -110px var(--secondary-background);
@@ -70,7 +71,6 @@ body {
         align-items: center;
         flex-direction: column;
         margin: 2rem auto;
-        background-color: var(--background);
         -webkit-box-shadow: 35px 37px 300px -110px var(--secondary-background);
         -moz-box-shadow: 35px 37px 300px -110px var(--secondary-background);
         box-shadow: 15px 30px 300px -80px var(--secondary-background);
@@ -82,7 +82,6 @@ body {
             text-align: center;
             font-size: 2.5rem;
             font-weight: 500;
-            color: var(--color);
 
             & p {
                 line-height: 40px;
@@ -113,20 +112,6 @@ body {
             }
         }
 
-        & .skip {
-            position: absolute;
-            bottom: 50px;
-
-            & p {
-                cursor: pointer;
-                text-decoration: underline;
-
-                &:hover {
-                    color: var(--secondary-background);
-                }
-            }
-        }
-
         & .signup-form {
             width: 80%;
             height: 100%;
@@ -141,13 +126,16 @@ body {
                     width: 100%;
                     padding: 10px 2px;
                     outline: none;
-                    border: none;
+                    border: 1px solid;
                     border-radius: 2px;
                     color: var(--background);
                 }
 
                 & button {
                     margin-top: 1rem;
+                    display: flex;
+                    justify-content: center;
+                    gap: 5px;
                 }
             }
 
@@ -170,6 +158,10 @@ body {
         margin: 0 auto;
         width: 100%;
         height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         position: relative;
 
         & .heading {
@@ -196,38 +188,7 @@ body {
             background: transparent;
         }
 
-        & .entries {
-            margin-top: 3rem;
-            width: 100%;
 
-            & .form {
-                width: 50%;
-                margin: 0 auto;
-                padding: 15px;
-                border-radius: 5px;
-                background: var(--background);
-                box-shadow: 35px 37px 300px -110px var(--secondary-background);
-
-                & label {
-                    text-transform: capitalize;
-                    font-size: 1.1rem;
-                }
-
-                & input {
-                    width: 100%;
-                    padding: 0.5rem 0.7rem;
-                    border-radius: 5px;
-                    margin: 10px 0;
-                    outline: none;
-                    border: none;
-                    color: var(--background);
-                }
-
-                & button {
-                    margin-top: 1.1rem;
-                }
-            }
-        }
 
         & .log-btn {
             position: absolute;
@@ -237,6 +198,77 @@ body {
             justify-content: center;
             align-items: center;
             flex-direction: column;
+        }
+
+        & .chart {
+            margin-top: 2rem;
+            display: flex;
+            gap: 3rem;
+
+
+            & .states {
+                & h2 {
+                    margin-bottom: 10px;
+                }
+
+                & .table {
+
+                    & table thead {
+                        text-align: center;
+
+                        & tr th {
+                            text-align: center;
+                            padding: 10px 10px;
+                        }
+                    }
+
+                    & table tbody {
+                        & tr td {
+                            text-align: center;
+                            padding: 10px 10px;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    & .entries {
+        margin: 3rem auto 0 auto;
+        width: 50%;
+        box-shadow: 35px 37px 300px -110px var(--secondary-background);
+
+        & h3 {
+            padding: 3px 5px;
+            font-size: 1.5rem;
+        }
+
+        & .form {
+            margin: 0 auto;
+            padding: 15px;
+            border-radius: 5px;
+            background: transparent;
+
+
+            & label {
+                text-transform: capitalize;
+                font-size: 1.1rem;
+            }
+
+            & input {
+                width: 100%;
+                padding: 0.5rem 0.7rem;
+                border-radius: 5px;
+                margin: 10px 0;
+                outline: none;
+                border: 1px solid;
+                color: var(--background);
+            }
+
+            & button {
+                margin-top: 1.1rem;
+            }
         }
     }
 }

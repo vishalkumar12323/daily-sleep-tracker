@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const NewEntry = ({ setShowEntries }) => {
+const NewEntry = () => {
   const [entries, setEnteries] = useState({
     date: "",
     sleepTime: "",
@@ -24,12 +24,12 @@ const NewEntry = ({ setShowEntries }) => {
       sleepTime: "",
       wakeUpTime: "",
     });
-    setShowEntries(false);
-    console.log(entries);
+    // console.log(entries);
   };
   return (
     <>
       <div className="entries">
+        <h3>Set Entries</h3>
         <div className="form">
           <form>
             <div>

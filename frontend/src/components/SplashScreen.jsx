@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import icon from "/assets/sleep.gif";
-import { useState } from "react";
+import { Loader } from "./Loader";
 const SplashScreen = () => {
   return (
     <>
@@ -14,10 +13,7 @@ const SplashScreen = () => {
           <p>Welcome To The</p>
           <p>Daily Sleep Tracker</p>
         </div>
-        <div className="loader">
-          <h3>Loading...</h3>
-          <div className="sp sp-bars"></div>
-        </div>
+        <Loader />
       </div>
     </>
   );

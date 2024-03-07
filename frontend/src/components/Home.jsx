@@ -1,21 +1,24 @@
 import { useState } from "react";
 import { Navbar } from "./Navbar";
-import { NewEntry } from "./NewEntry";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
-import { DataViewer } from "./DataViewer";
+import { ChartView } from "./ChartView";
+import { SleepState } from "./SleepState";
 
 const Home = () => {
-  const [showEntries, setShowEntries] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <>
       <div className="main">
-        <Navbar setShowEntries={setShowEntries} />
-        {showEntries && <NewEntry setShowEntries={setShowEntries} />}
+        <Navbar />
 
-        <DataViewer />
+        <div className="chart">
+          <div className="chart-data">
+            <ChartView />
+          </div>
+          <SleepState />
+        </div>
         <div className="log-btn">
           {isLoggedIn ? <LogoutButton /> : <LoginButton />}
         </div>

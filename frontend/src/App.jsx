@@ -4,6 +4,7 @@ import { SplashScreen } from "./components/SplashScreen";
 import { Signup } from "./components/Signup";
 import { Home } from "./components/Home";
 import { Error } from "./components/Error";
+import { NewEntry } from "./components/NewEntry";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,6 +24,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/splash" element={<SplashScreen />} />
+            <Route path="/new-entry" element={<NewEntry />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </BrowserRouter>
