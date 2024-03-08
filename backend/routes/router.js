@@ -8,6 +8,7 @@ const {
   createNewUser,
   loginUser,
 } = require("../controllers/index");
+const { authentication } = require("../middlewares/authentication");
 
 const router = express.Router();
 const upload = multer({ storage: storage });
@@ -21,5 +22,5 @@ router.post(
 
 router.post("/login", loginUser);
 
-router.post("/new-entry", createNewEntry);
+router.post("/new-entry", authentication, createNewEntry);
 module.exports = router;
