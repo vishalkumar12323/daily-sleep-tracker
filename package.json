@@ -9,5 +9,8 @@
     "server": "nodemon backend/index.js"
   },
   "author": "vishal",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3"
+  }
 }

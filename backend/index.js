@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 });
 
 const init = async () => {
-  // await connectDB(process.env.MONGO_DB_URL);
+  await connectDB(process.env.MONGO_DB_URL);
   app.listen(port, () => {
     console.log(`api server running on: http://localhost:${port}`);
   });

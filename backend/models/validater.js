@@ -16,7 +16,7 @@ const validateSchema = z.object({
   password: z
     .string({ required_error: "password is required" })
     .trim()
-    .min(8, { message: "password must be at least 8 characters" })
+    .min(6, { message: "password must be at least 8 characters" })
     .max(25, { message: "password must not be more then 25 characters" }),
 });
 
