@@ -27,13 +27,34 @@ const createNewUser = async (req, res, next) => {
     await newUser.save();
     res.status(200).json({ token: token });
   } catch (e) {
-    console.log("error ", e);
+    console.log(e);
     next(e);
   }
 };
 
-const loginUser = async (req, res) => {
-  res.status(200).json({ message: "login successfully" });
+const loginUser = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "invalid email or password, try again." });
+    }
+    const check = await user.compare(password);
+    if (check) {
+      const token = createToken({ id: user.id, email: user.email });
+      return res.status(200).json({ token: token });
+    } else {
+      return res
+        .status(404)
+        .json({ message: "invalid email or password, try again" });
+    }
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
 };
 
 const createNewEntry = (req, res) => {
