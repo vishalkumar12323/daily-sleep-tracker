@@ -59,8 +59,6 @@ body {
     border-radius: 10px;
     background-color: var(--color);
     color: var(--background);
-    -webkit-box-shadow: 35px 37px 300px -110px var(--secondary-background);
-    -moz-box-shadow: 35px 37px 300px -110px var(--secondary-background);
     box-shadow: 35px 37px 300px -110px var(--secondary-background);
 
     & .container {
@@ -71,8 +69,6 @@ body {
         align-items: center;
         flex-direction: column;
         margin: 2rem auto;
-        -webkit-box-shadow: 35px 37px 300px -110px var(--secondary-background);
-        -moz-box-shadow: 35px 37px 300px -110px var(--secondary-background);
         box-shadow: 15px 30px 300px -80px var(--secondary-background);
 
 
@@ -122,6 +118,10 @@ body {
                 width: 100%;
                 padding: 2px 0px;
 
+                & label {
+                    text-transform: capitalize;
+                }
+
                 & input {
                     width: 100%;
                     padding: 10px 2px;
@@ -130,26 +130,16 @@ body {
                     border-radius: 2px;
                     color: var(--background);
                 }
-
-                & button {
-                    margin-top: 1rem;
-                    display: flex;
-                    justify-content: center;
-                    gap: 5px;
-                }
             }
 
-            & .close-button {
-                position: absolute;
-                right: 5px;
-                padding: 10px;
+            & input[type="submit"] {
+                margin: 0.8rem 0;
+            }
 
-                & button {
-                    background-color: transparent;
-                    border: none;
-                    outline: none;
-                    cursor: pointer;
-                }
+            & button {
+                display: flex;
+                justify-content: center;
+                gap: 5px;
             }
         }
     }

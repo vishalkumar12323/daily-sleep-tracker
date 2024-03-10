@@ -6,6 +6,7 @@ const { uploadImage } = require("../services/handleImages");
 const signInNewUser = async (req, res, next) => {
   const { name, lName, age, email, password } = req.body;
   const profileImage = req.file?.filename;
+  console.log(name);
   try {
     const user = await User.findOne({ email: email });
     if (user) {

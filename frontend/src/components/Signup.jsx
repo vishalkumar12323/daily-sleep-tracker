@@ -1,6 +1,7 @@
 import { useState } from "react";
+import axios from "axios";
 import googleIcon from "/assets/google.svg";
-import icon from "/assets/close-button.svg";
+import { Inputs } from "../components/Inputs";
 const Signup = () => {
   const [formData, setFormData] = useState({
     profileImage: "",
@@ -21,8 +22,20 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    axios
+      .post("http://localhost:8081/api/signup", formData, {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
     setFormData({
       profileImage: "",
       name: "",
@@ -31,86 +44,76 @@ const Signup = () => {
       email: "",
       password: "",
     });
-    console.log(formData);
   };
   return (
     <>
       <div className="container">
         <div className="signup-form">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="input-box">
-              <label htmlFor="profile-image">Profile Image</label>
-              <input
+              <Inputs
+                label="profile image"
                 type="file"
                 name="profileImage"
-                id="profile-image"
                 value={formData.profileImage}
-                onChange={handleDataChange}
+                handlerFunction={handleDataChange}
               />
             </div>
             <div className="input-box">
-              <label htmlFor="name">Name</label>
-              <input
+              <Inputs
+                label="name"
                 type="text"
                 name="name"
-                id="name"
-                placeholder="Name"
                 value={formData.name}
-                onChange={handleDataChange}
-                required
+                handlerFunction={handleDataChange}
+                text="Enter Your Name"
+                required={true}
               />
             </div>
             <div className="input-box">
-              <label htmlFor="sirname">Last Name</label>
-              <input
+              <Inputs
+                label="LastName"
                 type="text"
                 name="lName"
-                id="sirname"
-                placeholder="Last Name"
                 value={formData.lName}
-                onChange={handleDataChange}
+                handlerFunction={handleDataChange}
+                text="Enter Your LastName"
               />
             </div>
             <div className="input-box">
-              <label htmlFor="age">Age</label>
-              <input
+              <Inputs
+                label="age"
                 type="number"
                 name="age"
-                id="age"
-                required
-                placeholder="Age"
                 value={formData.age}
-                onChange={handleDataChange}
+                handlerFunction={handleDataChange}
+                text="Age"
+                required={true}
               />
             </div>
             <div className="input-box">
-              <label htmlFor="email">Email</label>
-              <input
+              <Inputs
+                label="email"
                 type="email"
                 name="email"
-                id="email"
-                required
-                placeholder="Email"
                 value={formData.email}
-                onChange={handleDataChange}
+                handlerFunction={handleDataChange}
+                required={true}
+                text="Your Email"
               />
             </div>
             <div className="input-box">
-              <label htmlFor="password">Password</label>
-              <input
+              <Inputs
+                label="password"
                 type="text"
                 name="password"
-                id="password"
-                required
-                placeholder="Password"
                 value={formData.password}
-                onChange={handleDataChange}
+                handlerFunction={handleDataChange}
+                text="Password"
               />
             </div>
-            <div className="input-box ">
-              <button className="btn" onClick={handleSubmit}>
-                create account
-              </button>
+            <div>
+              <input className="btn" type="submit" value="create account" />
               <button className="btn">
                 <img src={googleIcon} alt={googleIcon} /> Continue with google
               </button>

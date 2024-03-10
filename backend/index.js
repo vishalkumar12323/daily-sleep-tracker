@@ -9,8 +9,14 @@ const app = express();
 const port = process.env.PORT || 8081;
 
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
+    credentials: true,
+  })
+);
 
 app.use("/api", router);
 
