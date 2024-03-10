@@ -60,14 +60,19 @@ const loginUser = async (req, res, next) => {
 const createNewEntry = async (req, res) => {
   const { date, sleepTime, wakeUpTime } = req.body;
   try {
-    const user = await User.findOne({ _id: req.user.id });
+    const user = await User.findOne({ _id: req.user.id }).select({
+      name: true,
+      lName: true,
+      profileImage: true,
+      email: true,
+    });
     const newEntry = await SleepRecord({
       date,
       sleepTime,
       wakeUpTime,
     });
     await newEntry.save();
-    res.status(201).json({ message: "new entry created" });
+    res.status(201).json({ message: "new entry created", user: user });
   } catch (e) {
     console.log(e);
   }
