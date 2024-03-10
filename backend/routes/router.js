@@ -9,19 +9,22 @@ const {
 } = require("../models/validater");
 const {
   createNewEntry,
-  createNewUser,
+  signInNewUser,
   loginUser,
+  getEntries,
 } = require("../controllers/index");
 const { authentication } = require("../middlewares/authentication");
 
 const router = express.Router();
 const upload = multer({ storage: storage });
 
+router.get("/entries", authentication, getEntries);
+
 router.post(
   "/signup",
   validate(validateSchema),
   upload.single("profileImage"),
-  createNewUser
+  signInNewUser
 );
 
 router.post("/login", validate(loginSchemaValidate), loginUser);

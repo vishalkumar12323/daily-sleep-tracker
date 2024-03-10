@@ -3,7 +3,7 @@ const SleepRecord = require("../models/sleep");
 const { createToken } = require("../services/auth");
 const { uploadImage } = require("../services/handleImages");
 
-const createNewUser = async (req, res, next) => {
+const signInNewUser = async (req, res, next) => {
   const { name, lName, age, email, password } = req.body;
   const profileImage = req.file?.filename;
   try {
@@ -57,7 +57,7 @@ const loginUser = async (req, res, next) => {
   }
 };
 
-const createNewEntry = async (req, res) => {
+const createNewEntry = async (req, res, next) => {
   const { date, sleepTime, wakeUpTime } = req.body;
   try {
     const user = await User.findOne({ _id: req.user.id }).select({
@@ -70,12 +70,30 @@ const createNewEntry = async (req, res) => {
       date,
       sleepTime,
       wakeUpTime,
+      createdBy: req.user.id,
     });
     await newEntry.save();
     res.status(201).json({ message: "new entry created", user: user });
   } catch (e) {
     console.log(e);
+    next(e);
   }
 };
 
-module.exports = { createNewUser, createNewEntry, loginUser };
+const getEntries = async (req, res, next) => {
+  const { id } = req.user;
+  try {
+    const entries = await SleepRecord.find({ createdBy: id }).select({
+      date: true,
+      sleepTime: true,
+      wakeUpTime: true,
+    });
+    if (entries.length === 0 || !entries)
+      return res.status(404).json({ message: "not any record found" });
+    res.status(200).json({ data: entries });
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
+};
+module.exports = { signInNewUser, createNewEntry, loginUser, getEntries };
