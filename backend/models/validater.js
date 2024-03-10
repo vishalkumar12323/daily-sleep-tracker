@@ -20,4 +20,23 @@ const validateSchema = z.object({
     .max(25, { message: "password must not be more then 25 characters" }),
 });
 
-module.exports = validateSchema;
+const loginSchemaValidate = z.object({
+  email: z
+    .string({ required_error: "email is required" })
+    .trim()
+    .min(5, { message: "email must be at least of 5 charachers" })
+    .max(25, { message: "email must not be more than 25 characters" }),
+  password: z
+    .string({ required_error: "password is required" })
+    .trim()
+    .min(6, { message: "password must be at least 8 characters" })
+    .max(25, { message: "password must not be more then 25 characters" }),
+});
+
+const entriesValidateSchema = z.object({
+  date: z.string({ required_error: "date is required" }).trim(),
+  sleepTime: z.string({ required_error: "sleeping time is required" }),
+  wakeUpTime: z.string({ required_error: "wake up time is required." }),
+});
+
+module.exports = { validateSchema, entriesValidateSchema, loginSchemaValidate };

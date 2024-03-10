@@ -6,7 +6,7 @@ const sleepSchema = new Schema(
       type: String,
       required: true,
     },
-    sleepingTime: {
+    sleepTime: {
       type: String,
       required: true,
     },

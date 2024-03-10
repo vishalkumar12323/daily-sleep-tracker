@@ -57,8 +57,20 @@ const loginUser = async (req, res, next) => {
   }
 };
 
-const createNewEntry = (req, res) => {
-  res.json({ message: "entry successfully created." });
+const createNewEntry = async (req, res) => {
+  const { date, sleepTime, wakeUpTime } = req.body;
+  try {
+    const user = await User.findOne({ _id: req.user.id });
+    const newEntry = await SleepRecord({
+      date,
+      sleepTime,
+      wakeUpTime,
+    });
+    await newEntry.save();
+    res.status(201).json({ message: "new entry created" });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 module.exports = { createNewUser, createNewEntry, loginUser };

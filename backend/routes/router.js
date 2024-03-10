@@ -1,8 +1,12 @@
 const express = require("express");
 const multer = require("multer");
 const { storage } = require("../services/handleImages");
-const validateSchema = require("../models/validater");
 const { validate } = require("../services/validate");
+const {
+  validateSchema,
+  entriesValidateSchema,
+  loginSchemaValidate,
+} = require("../models/validater");
 const {
   createNewEntry,
   createNewUser,
@@ -20,7 +24,12 @@ router.post(
   createNewUser
 );
 
-router.post("/login", loginUser);
+router.post("/login", validate(loginSchemaValidate), loginUser);
 
-router.post("/new-entry", authentication, createNewEntry);
+router.post(
+  "/new-entry",
+  authentication,
+  validate(entriesValidateSchema),
+  createNewEntry
+);
 module.exports = router;
