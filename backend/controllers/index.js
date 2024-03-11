@@ -26,7 +26,7 @@ const signInNewUser = async (req, res, next) => {
     const token = createToken({ id: newUser.id, email: newUser.email });
 
     await newUser.save();
-    res.status(200).json({ token: token });
+    res.status(200).json({ token: token, message: "successfully signin" });
   } catch (e) {
     console.log(e);
     next(e);
@@ -46,7 +46,9 @@ const loginUser = async (req, res, next) => {
     const check = await user.compare(password);
     if (check) {
       const token = createToken({ id: user.id, email: user.email });
-      return res.status(200).json({ token: token });
+      return res
+        .status(200)
+        .json({ token: token, message: "successfully login" });
     } else {
       return res
         .status(404)
