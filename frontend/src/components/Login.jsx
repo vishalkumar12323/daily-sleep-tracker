@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import { Inputs } from "../components/Inputs";
 
 const Login = () => {
@@ -15,12 +16,25 @@ const Login = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    axios
+      .post("http://localhost:8081/api/login", loginData, {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    setLoginData({ email: "", password: "" });
   };
   return (
     <>
       <div className="container">
         <div className="signup-form">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="login-form">
             <div className="input-box">
               <Inputs
                 label="email"
@@ -42,9 +56,12 @@ const Login = () => {
                 text="Password"
               />
             </div>
-            <div className="group">
-              <input className="btn" type="submit" value="create account" />
-            </div>
+            <input
+              className="btn"
+              type="submit"
+              value="login"
+              style={{ marginTop: "1rem" }}
+            />
           </form>
         </div>
       </div>

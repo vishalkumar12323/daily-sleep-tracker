@@ -29,16 +29,16 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // axios
-    //   .post("http://localhost:8081/api/signup", formData, {
-    //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
+    axios
+      .post("http://localhost:8081/api/signup", formData, {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
 
     setFormData(user);
   };
