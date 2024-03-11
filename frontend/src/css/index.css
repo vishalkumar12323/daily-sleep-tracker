@@ -23,6 +23,11 @@
     --color: #ffffff;
 }
 
+a {
+    text-align: center;
+    text-decoration: none !important;
+}
+
 .btn {
     width: 100%;
     border: none;
@@ -63,12 +68,12 @@ body {
 
     & .container {
         width: 60%;
-        height: 90%;
+        height: 95%;
         border-radius: 10px;
         display: flex;
         align-items: center;
         flex-direction: column;
-        margin: 2rem auto;
+        margin: 1rem auto;
         box-shadow: 15px 30px 300px -80px var(--secondary-background);
 
 
@@ -112,7 +117,7 @@ body {
             width: 80%;
             height: 100%;
             position: relative;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
 
             & .input-box {
                 width: 100%;
@@ -132,14 +137,34 @@ body {
                 }
             }
 
-            & input[type="submit"] {
-                margin: 0.8rem 0;
-            }
-
             & button {
                 display: flex;
                 justify-content: center;
                 gap: 5px;
+            }
+
+            & .group {
+                margin-top: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            & .line {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+
+                & div {
+                    width: 100%;
+                    border: 0.1px dotted var(--background);
+                }
+            }
+
+            & .btn-group {
+                display: flex;
+                gap: 10px;
             }
         }
     }

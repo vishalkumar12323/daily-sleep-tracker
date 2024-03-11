@@ -5,6 +5,7 @@ import { Signup } from "./components/Signup";
 import { Home } from "./components/Home";
 import { Error } from "./components/Error";
 import { NewEntry } from "./components/NewEntry";
+import { Login } from "./components/Login";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/splash" element={<SplashScreen />} />
             <Route path="/new-entry" element={<NewEntry />} />
             <Route path="*" element={<Error />} />
