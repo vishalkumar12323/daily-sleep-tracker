@@ -5,9 +5,12 @@ import LogoutButton from "./LogoutButton";
 import { ChartView } from "./ChartView";
 import { SleepState } from "./SleepState";
 import { useAuth } from "../authentication/auth";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   const { isLoggedIn, getEntries } = useAuth();
+
   // useEffect(() => {
   //   getEntries()
   //     .then((res) => {
@@ -32,6 +35,7 @@ const Home = () => {
         <div className="log-btn">
           {isLoggedIn ? <LogoutButton /> : <LoginButton />}
         </div>
+        <ToastContainer theme="colored" autoClose={4000} />
       </div>
     </>
   );

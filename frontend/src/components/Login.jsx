@@ -26,10 +26,10 @@ const Login = () => {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       })
       .then((res) => {
-        const { token } = res.data;
+        const { token, message } = res.data;
         setToken(token);
         storeToken(token);
-        toast.success("successfully login");
+        toast.success(message);
         navigate("/");
       })
       .catch((e) => {

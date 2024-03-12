@@ -1,9 +1,11 @@
-import { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
 import googleIcon from "/assets/google.svg";
 import { Inputs } from "../components/Inputs";
 import { useAuth } from "../authentication/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 const user = {
   profileImage: "",
   name: "",
@@ -14,6 +16,7 @@ const user = {
 };
 const Signup = () => {
   const [formData, setFormData] = useState(user);
+  const navigate = useNavigate();
   const { setToken, storeToken } = useAuth();
   const handleDataChange = (e) => {
     const { name, value } = e.target;
@@ -34,9 +37,11 @@ const Signup = () => {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       })
       .then((res) => {
-        const { token } = res.data;
+        const { token, message } = res.data;
         setToken(token);
         storeToken(token);
+        toast.success(message);
+        navigate("/");
       })
       .catch((e) => {
         console.log(e);
