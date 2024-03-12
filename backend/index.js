@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { connectDB } = require("./configs/db");
 const router = require("./routes/router");
+const { handleError } = require("./middlewares/handleError");
 
 const app = express();
 const port = process.env.PORT || 8081;
@@ -19,6 +20,7 @@ app.use(
 );
 
 app.use("/api", router);
+app.use(handleError);
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "api for daily sleep tracker web app." });
