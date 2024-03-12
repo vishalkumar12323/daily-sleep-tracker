@@ -63,12 +63,6 @@ const loginUser = async (req, res, next) => {
 const createNewEntry = async (req, res, next) => {
   const { date, sleepTime, wakeUpTime } = req.body;
   try {
-    const user = await User.findOne({ _id: req.user.id }).select({
-      name: true,
-      lName: true,
-      profileImage: true,
-      email: true,
-    });
     const newEntry = await SleepRecord({
       date,
       sleepTime,
@@ -76,7 +70,7 @@ const createNewEntry = async (req, res, next) => {
       createdBy: req.user.id,
     });
     await newEntry.save();
-    res.status(201).json({ message: "new entry created", user: user });
+    res.status(201).json({ message: "new entry created" });
   } catch (e) {
     console.log(e);
     next(e);
@@ -86,6 +80,12 @@ const createNewEntry = async (req, res, next) => {
 const getEntries = async (req, res, next) => {
   const { id } = req.user;
   try {
+    const user = await User.findOne({ _id: req.user.id }).select({
+      name: true,
+      lName: true,
+      profileImage: true,
+      email: true,
+    });
     const entries = await SleepRecord.find({ createdBy: id }).select({
       date: true,
       sleepTime: true,
@@ -93,7 +93,7 @@ const getEntries = async (req, res, next) => {
     });
     if (entries.length === 0 || !entries)
       return res.status(404).json({ message: "not any record found" });
-    res.status(200).json({ data: entries });
+    res.status(200).json({ data: entries, user: user });
   } catch (e) {
     console.log(e);
     next(e);

@@ -1,7 +1,7 @@
 const { verifyToken } = require("../services/auth");
 
 const authentication = async (req, res, next) => {
-  const bearerToken = req.header("Authorization");
+  const bearerToken = req.headers["authorization"];
   try {
     if (!bearerToken)
       return res.status(400).json({ message: "authorization required." });

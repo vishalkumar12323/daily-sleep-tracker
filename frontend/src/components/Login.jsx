@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { Inputs } from "../components/Inputs";
+import { useAuth } from "../authentication/auth";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
-
+  const { setToken, storeToken } = useAuth();
+  const navigate = useNavigate();
   const handleDataChange = (e) => {
     const { name, value } = e.target;
     setLoginData((previousData) => {
@@ -22,7 +26,11 @@ const Login = () => {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       })
       .then((res) => {
-        console.log(res);
+        const { token } = res.data;
+        setToken(token);
+        storeToken(token);
+        toast.success("successfully login");
+        navigate("/");
       })
       .catch((e) => {
         console.log(e);

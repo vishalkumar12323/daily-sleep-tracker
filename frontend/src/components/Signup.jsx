@@ -14,7 +14,7 @@ const user = {
 };
 const Signup = () => {
   const [formData, setFormData] = useState(user);
-  const { setToken } = useAuth();
+  const { setToken, storeToken } = useAuth();
   const handleDataChange = (e) => {
     const { name, value } = e.target;
     setFormData((previouseValue) => {
@@ -34,7 +34,9 @@ const Signup = () => {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       })
       .then((res) => {
-        console.log(res);
+        const { token } = res.data;
+        setToken(token);
+        storeToken(token);
       })
       .catch((e) => {
         console.log(e);
@@ -110,19 +112,26 @@ const Signup = () => {
               />
             </div>
             <div className="group">
-              <input className="btn" type="submit" value="create account" />
-              <div className="line">
-                <div></div>
-                <span>or</span>
-                <div></div>
+              <div className="submit-btn">
+                <input type="submit" value="create account" className="btn" />
               </div>
-              <div className="btn-group">
-                <Link className="btn" to="/login">
-                  already account?
-                </Link>
-                <button className="btn">
-                  <img src={googleIcon} alt={googleIcon} /> Continue with google
-                </button>
+              <div className="line-through">
+                <div className="line"></div>
+                <div>or</div>
+                <div className="line"></div>
+              </div>
+              <div className="other-btn">
+                <div>
+                  <Link to="/login">
+                    <button className="btn">already account?</button>
+                  </Link>
+                </div>
+                <div>
+                  <button className="btn g-btn">
+                    <img src={googleIcon} alt={googleIcon} />
+                    continue with google{" "}
+                  </button>
+                </div>
               </div>
             </div>
           </form>

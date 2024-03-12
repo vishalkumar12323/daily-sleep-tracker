@@ -26,6 +26,7 @@
 a {
     text-align: center;
     text-decoration: none !important;
+    color: var(--background);
 }
 
 .btn {
@@ -121,7 +122,7 @@ body {
 
             & .input-box {
                 width: 100%;
-                padding: 2px 0px;
+                padding: 5px 0px;
 
                 & label {
                     text-transform: capitalize;
@@ -137,34 +138,44 @@ body {
                 }
             }
 
-            & button {
-                display: flex;
-                justify-content: center;
-                gap: 5px;
-            }
-
             & .group {
                 margin-top: 1rem;
+                width: 100%;
+                height: auto;
+                padding: 1rem 0;
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
-            }
 
-            & .line {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 5px;
-
-                & div {
+                & .line-through {
                     width: 100%;
-                    border: 0.1px dotted var(--background);
-                }
-            }
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
 
-            & .btn-group {
-                display: flex;
-                gap: 10px;
+                    & .line {
+                        width: 100%;
+                        height: 0%;
+                        border: 0.001px var(--background) solid;
+                    }
+                }
+
+                & .other-btn {
+                    width: 100%;
+                    display: flex;
+                    gap: 8px;
+
+                    & div {
+                        width: 100%;
+
+                        & .g-btn {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 3px;
+                        }
+                    }
+                }
             }
 
             & .login-form {

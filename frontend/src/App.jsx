@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import { SplashScreen } from "./components/SplashScreen";
 import { Signup } from "./components/Signup";
 import { Home } from "./components/Home";
@@ -31,6 +32,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       )}
+      {/* <ToastContainer autoClose={4000} theme="colored" newestOnTop={true} /> */}
     </>
   );
 }

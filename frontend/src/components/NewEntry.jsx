@@ -1,6 +1,8 @@
 import { useState } from "react";
-
+import axios from "axios";
+import { useAuth } from "../authentication/auth";
 const NewEntry = () => {
+  const { createEntries } = useAuth();
   const [entries, setEnteries] = useState({
     date: "",
     sleepTime: "",
@@ -19,12 +21,14 @@ const NewEntry = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const response = createEntries(entries);
     setEnteries({
       date: "",
       sleepTime: "",
       wakeUpTime: "",
     });
-    // console.log(entries);
+    console.log(entries);
   };
   return (
     <>
