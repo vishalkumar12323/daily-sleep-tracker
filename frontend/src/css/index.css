@@ -33,7 +33,7 @@ a {
     width: 100%;
     border: none;
     outline: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     padding: 0.4rem 1.2rem;
     text-transform: capitalize;
     cursor: pointer;
@@ -119,6 +119,14 @@ body {
             height: 100%;
             position: relative;
             margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            & form {
+                width: 100%;
+            }
 
             & .input-box {
                 width: 100%;

@@ -37,25 +37,6 @@ function AuthProvider({ children }) {
     }
   }
 
-  async function createEntries(entries) {
-    try {
-      const { data } = await axios.post(
-        "http://localhost:8081/api/new-entry",
-        entries,
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      return data;
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
   return (
     <authContext.Provider
       value={{
@@ -65,7 +46,6 @@ function AuthProvider({ children }) {
         storeToken,
         logOut,
         getEntries,
-        createEntries,
       }}
     >
       {children}

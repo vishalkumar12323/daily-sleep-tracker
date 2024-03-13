@@ -1,8 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../authentication/auth";
 const NewEntry = () => {
-  const { createEntries } = useAuth();
+  const { token } = useAuth();
+  const navigate = useNavigate();
   const [entries, setEnteries] = useState({
     date: "",
     sleepTime: "",
@@ -21,14 +24,26 @@ const NewEntry = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const response = createEntries(entries);
+    axios
+      .post("http://localhost:8081/api/new-entry", entries, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      })
+      .then((res) => {
+        toast.success(res.data?.message);
+        navigate("/");
+      })
+      .catch((e) => {
+        toast.error(e?.response?.data?.message);
+        navigate("/new-entry");
+      });
     setEnteries({
       date: "",
       sleepTime: "",
       wakeUpTime: "",
     });
-    console.log(entries);
   };
   return (
     <>

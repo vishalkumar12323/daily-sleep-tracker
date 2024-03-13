@@ -7,7 +7,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const user = {
-  profileImage: "",
   name: "",
   lName: "",
   age: "",
@@ -34,7 +33,9 @@ const Signup = () => {
 
     axios
       .post("http://localhost:8081/api/signup", formData, {
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
       })
       .then((res) => {
         const { token, message } = res.data;
@@ -44,7 +45,7 @@ const Signup = () => {
         navigate("/");
       })
       .catch((e) => {
-        const message = e?.response.data.message;
+        const message = e?.response?.data?.message;
         toast.error(message);
       });
 
@@ -55,15 +56,6 @@ const Signup = () => {
       <div className="container">
         <div className="signup-form">
           <form onSubmit={handleSubmit}>
-            <div className="input-box">
-              <Inputs
-                label="profile image"
-                type="file"
-                name="profileImage"
-                value={formData.profileImage}
-                handlerFunction={handleDataChange}
-              />
-            </div>
             <div className="input-box">
               <Inputs
                 label="name"
@@ -135,7 +127,7 @@ const Signup = () => {
                 <div>
                   <button className="btn g-btn">
                     <img src={googleIcon} alt={googleIcon} />
-                    continue with google{" "}
+                    login with google{" "}
                   </button>
                 </div>
               </div>

@@ -1,12 +1,10 @@
 const User = require("../models/users");
 const SleepRecord = require("../models/sleep");
 const { createToken } = require("../services/auth");
-const { uploadImage } = require("../services/handleImages");
 
+// Signin new user and store details in database.
 const signInNewUser = async (req, res) => {
   const { name, lName, age, email, password } = req.body;
-  const profileImage = req.file?.filename;
-  console.log(name);
   try {
     const user = await User.findOne({ email: email });
     if (user) {
@@ -14,9 +12,7 @@ const signInNewUser = async (req, res) => {
         .status(404)
         .json({ message: "user already exists with this email." });
     }
-    const image_url = await uploadImage(profileImage);
     const newUser = await new User({
-      profileImage: image_url,
       name,
       lName,
       age,
@@ -33,6 +29,7 @@ const signInNewUser = async (req, res) => {
   }
 };
 
+// Login user
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -60,6 +57,7 @@ const loginUser = async (req, res) => {
   }
 };
 
+// create new entry and store into database
 const createNewEntry = async (req, res) => {
   const { date, sleepTime, wakeUpTime } = req.body;
   try {
@@ -77,6 +75,7 @@ const createNewEntry = async (req, res) => {
   }
 };
 
+// Get all entries from database
 const getEntries = async (req, res) => {
   const { id } = req.user;
   try {

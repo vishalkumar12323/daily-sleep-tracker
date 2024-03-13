@@ -1,6 +1,4 @@
 const express = require("express");
-const multer = require("multer");
-const { storage } = require("../services/handleImages");
 const { validate } = require("../services/validate");
 const {
   validateSchema,
@@ -16,16 +14,10 @@ const {
 const { authentication } = require("../middlewares/authentication");
 
 const router = express.Router();
-const upload = multer({ storage: storage });
 
 router.get("/entries", authentication, getEntries);
 
-router.post(
-  "/signup",
-  validate(validateSchema),
-  upload.single("profileImage"),
-  signInNewUser
-);
+router.post("/signup", validate(validateSchema), signInNewUser);
 
 router.post("/login", validate(loginSchemaValidate), loginUser);
 

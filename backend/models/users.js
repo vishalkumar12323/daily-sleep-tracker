@@ -3,10 +3,6 @@ const bcrypt = require("bcryptjs");
 
 const usersSchema = new Schema(
   {
-    profileImage: {
-      type: String,
-      required: false,
-    },
     name: {
       type: String,
       required: true,
