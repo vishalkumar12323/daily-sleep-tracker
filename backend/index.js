@@ -19,12 +19,11 @@ app.use(
   })
 );
 
-app.use("/api", router);
-app.use(handleError);
-
 app.get("/", (req, res) => {
   res.status(200).json({ message: "api for daily sleep tracker web app." });
 });
+app.use("/api", router);
+app.use(handleError);
 
 const init = async () => {
   await connectDB(process.env.MONGO_DB_URL);

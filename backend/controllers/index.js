@@ -3,7 +3,7 @@ const SleepRecord = require("../models/sleep");
 const { createToken } = require("../services/auth");
 const { uploadImage } = require("../services/handleImages");
 
-const signInNewUser = async (req, res, next) => {
+const signInNewUser = async (req, res) => {
   const { name, lName, age, email, password } = req.body;
   const profileImage = req.file?.filename;
   console.log(name);
@@ -29,11 +29,11 @@ const signInNewUser = async (req, res, next) => {
     res.status(200).json({ token: token, message: "successfully signin" });
   } catch (e) {
     console.log(e);
-    next(e);
+    res.status(500).json({ message: "internal server error" });
   }
 };
 
-const loginUser = async (req, res, next) => {
+const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -56,11 +56,11 @@ const loginUser = async (req, res, next) => {
     }
   } catch (e) {
     console.log(e);
-    next(e);
+    res.status(500).json({ message: "internal server error" });
   }
 };
 
-const createNewEntry = async (req, res, next) => {
+const createNewEntry = async (req, res) => {
   const { date, sleepTime, wakeUpTime } = req.body;
   try {
     const newEntry = await SleepRecord({
@@ -73,11 +73,11 @@ const createNewEntry = async (req, res, next) => {
     res.status(201).json({ message: "new entry created" });
   } catch (e) {
     console.log(e);
-    next(e);
+    res.status(500).json({ message: "internal server error" });
   }
 };
 
-const getEntries = async (req, res, next) => {
+const getEntries = async (req, res) => {
   const { id } = req.user;
   try {
     const user = await User.findOne({ _id: req.user.id }).select({
@@ -96,7 +96,7 @@ const getEntries = async (req, res, next) => {
     res.status(200).json({ data: entries, user: user });
   } catch (e) {
     console.log(e);
-    next(e);
+    res.status(500).json({ message: "internal server error" });
   }
 };
 module.exports = { signInNewUser, createNewEntry, loginUser, getEntries };

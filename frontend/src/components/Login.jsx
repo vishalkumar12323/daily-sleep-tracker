@@ -33,7 +33,8 @@ const Login = () => {
         navigate("/");
       })
       .catch((e) => {
-        console.log(e);
+        const message = e?.response.data.message;
+        toast.error(message);
       });
 
     setLoginData({ email: "", password: "" });
