@@ -8,16 +8,17 @@ import { useAuth } from "../authentication/auth";
 
 const Home = () => {
   const { isLoggedIn, getEntries } = useAuth();
+  const [sleepState, setSleepState] = useState([]);
 
-  // useEffect(() => {
-  //   getEntries()
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // }, []);
+  useEffect(() => {
+    getEntries()
+      .then((res) => {
+        setSleepState(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
   return (
     <>
@@ -25,10 +26,17 @@ const Home = () => {
         <Navbar />
 
         <div className="chart">
-          <div className="chart-data">
-            <ChartView />
-          </div>
-          <SleepState />
+          {sleepState ? (
+            <>
+              {" "}
+              <div className="chart-data">
+                <ChartView sleepState={sleepState} />
+              </div>
+              <SleepState sleepState={sleepState} />{" "}
+            </>
+          ) : (
+            <h1>No Any Entries</h1>
+          )}
         </div>
         <div className="log-btn">
           {isLoggedIn ? <LogoutButton /> : <LoginButton />}

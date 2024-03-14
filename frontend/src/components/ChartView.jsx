@@ -1,16 +1,6 @@
 import { Chart } from "react-google-charts";
 import { Loader } from "./Loader";
-
-const data = [
-  ["Date", "Sleeping Time", "Wake Up Time"],
-  ["01-03-2024", "11:00", "6:00"],
-  ["02-03-2024", "11:00", "6:30"],
-  ["03-03-2024", "11:00", "7:00"],
-  ["04-03-2024", "11:00", "7:30"],
-  ["05-03-2024", "11:00", "7:30"],
-  ["05-03-2024", "11:00", "7:30"],
-  ["05-03-2024", "11:00", "7:30"],
-];
+import { formateData } from "../authentication/sleepStates";
 
 const options = {
   title: "Slept Record",
@@ -27,7 +17,8 @@ const options = {
     easing: "out",
   },
 };
-const ChartView = () => {
+const ChartView = ({ sleepState }) => {
+  const data = formateData(sleepState);
   return (
     <>
       <Chart

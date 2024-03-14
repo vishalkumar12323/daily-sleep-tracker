@@ -1,4 +1,6 @@
-const SleepState = () => {
+import { getTotalDuration } from "../authentication/sleepStates";
+
+const SleepState = ({ sleepState }) => {
   return (
     <>
       <div className="states">
@@ -14,48 +16,21 @@ const SleepState = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>5/1</td>
-                <td>00:00</td>
-                <td>6:00</td>
-                <td>7:00</td>
-              </tr>
-              <tr>
-                <td>5/1</td>
-                <td>00:00</td>
-                <td>6:00</td>
-                <td>7:00</td>
-              </tr>
-              <tr>
-                <td>5/1</td>
-                <td>00:00</td>
-                <td>6:00</td>
-                <td>7:00</td>
-              </tr>
-              <tr>
-                <td>5/1</td>
-                <td>00:00</td>
-                <td>6:00</td>
-                <td>7:00</td>
-              </tr>
-              <tr>
-                <td>5/1</td>
-                <td>00:00</td>
-                <td>6:00</td>
-                <td>7:00</td>
-              </tr>
-              <tr>
-                <td>5/1</td>
-                <td>00:00</td>
-                <td>6:00</td>
-                <td>7:00</td>
-              </tr>
-              <tr>
-                <td>5/1</td>
-                <td>00:00</td>
-                <td>6:00</td>
-                <td>7:00</td>
-              </tr>
+              {sleepState.map((element, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{index + 1}/7</td>
+                    <td>{element?.sleepTime}</td>
+                    <td>{element?.wakeUpTime}</td>
+                    <td>
+                      {getTotalDuration(
+                        element?.sleepTime,
+                        element?.wakeUpTime
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
