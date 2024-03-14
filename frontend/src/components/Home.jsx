@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     getEntries()
       .then((res) => {
-        setSleepState(res.data);
+        setSleepState(res?.data);
       })
       .catch((e) => {
         console.log(e);
