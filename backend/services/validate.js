@@ -5,7 +5,7 @@ const validate = (schema) => async (req, res, next) => {
     next();
   } catch (e) {
     const statusCode = 422;
-    const message = e?.errors[0].message;
+    const message = e?.errors[0].message || "Unathorized";
 
     const error = {
       statusCode,

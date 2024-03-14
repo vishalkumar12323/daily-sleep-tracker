@@ -10,7 +10,7 @@ const signInNewUser = async (req, res) => {
     if (user) {
       return res
         .status(404)
-        .json({ message: "user already exists with this email." });
+        .json({ message: "User already exists with this email." });
     }
     const newUser = await new User({
       name,
@@ -22,10 +22,10 @@ const signInNewUser = async (req, res) => {
     const token = createToken({ id: newUser.id, email: newUser.email });
 
     await newUser.save();
-    res.status(200).json({ token: token, message: "successfully signin" });
+    res.status(200).json({ token: token, message: "Successfully signin" });
   } catch (e) {
     console.log(e);
-    res.status(500).json({ message: "internal server error" });
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -38,22 +38,22 @@ const loginUser = async (req, res) => {
     if (!user) {
       return res
         .status(404)
-        .json({ message: "invalid email or password, try again." });
+        .json({ message: "Invalid email or password, try again." });
     }
     const check = await user.compare(password);
     if (check) {
       const token = createToken({ id: user.id, email: user.email });
       return res
         .status(200)
-        .json({ token: token, message: "successfully login" });
+        .json({ token: token, message: "Successfully login" });
     } else {
       return res
         .status(404)
-        .json({ message: "invalid email or password, try again" });
+        .json({ message: "Invalid email or password, try again" });
     }
   } catch (e) {
     console.log(e);
-    res.status(500).json({ message: "internal server error" });
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -68,10 +68,10 @@ const createNewEntry = async (req, res) => {
       createdBy: req.user.id,
     });
     await newEntry.save();
-    res.status(201).json({ message: "new entry created" });
+    res.status(201).json({ message: "New entry created" });
   } catch (e) {
     console.log(e);
-    res.status(500).json({ message: "internal server error" });
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -91,11 +91,11 @@ const getEntries = async (req, res) => {
       wakeUpTime: true,
     });
     if (entries.length === 0 || !entries)
-      return res.status(404).json({ message: "not any record found" });
+      return res.status(404).json({ message: "Not any record found" });
     res.status(200).json({ data: entries, user: user });
   } catch (e) {
     console.log(e);
-    res.status(500).json({ message: "internal server error" });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
 module.exports = { signInNewUser, createNewEntry, loginUser, getEntries };

@@ -28,7 +28,6 @@ const NewEntry = () => {
       .post("http://localhost:8081/api/new-entry", entries, {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/x-www-form-urlencoded",
         },
       })
       .then((res) => {
@@ -36,6 +35,7 @@ const NewEntry = () => {
         navigate("/");
       })
       .catch((e) => {
+        console.log(e);
         toast.error(e?.response?.data?.message);
         navigate("/new-entry");
       });
