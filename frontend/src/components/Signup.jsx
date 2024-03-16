@@ -16,7 +16,7 @@ const user = {
 const Signup = () => {
   const [formData, setFormData] = useState(user);
   const navigate = useNavigate();
-  const { setToken, storeToken } = useAuth();
+  const { setToken, storeToken, logInWithGoogle } = useAuth();
   const handleDataChange = (e) => {
     const { name, value } = e.target;
     setFormData((previouseValue) => {
@@ -51,6 +51,7 @@ const Signup = () => {
 
     setFormData(user);
   };
+
   return (
     <>
       <div className="container">
@@ -125,7 +126,7 @@ const Signup = () => {
                   </Link>
                 </div>
                 <div>
-                  <button className="btn g-btn">
+                  <button className="btn g-btn" onClick={logInWithGoogle}>
                     <img src={googleIcon} alt={googleIcon} />
                     login with google{" "}
                   </button>

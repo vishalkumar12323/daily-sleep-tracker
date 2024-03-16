@@ -2,7 +2,6 @@ const express = require("express");
 const { validate } = require("../services/validate");
 const { authentication } = require("../middlewares/authentication");
 const passport = require("passport");
-const { createToken } = require("../services/auth");
 const {
   validateSchema,
   entriesValidateSchema,
@@ -31,17 +30,15 @@ router.post(
   createNewEntry
 );
 
-router.get("/auth/google", passport.authenticate("google", { scope: "email" }));
+router.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
 router.get(
   "/auth/google/home",
-  passport.authenticate("google", {
-    successRedirect: CLIENT_URL,
-    failureRedirect: CLIENT_URL + "/signup",
-  }),
+  passport.authenticate("google", { session: false }),
   (req, res) => {
-    const user = req.user;
-    const token = createToken(user);
-    res.status(200).json({ token: token, message: "Successfully login" });
+    res.status(200).json({ token: req.user, message: "Successfully login" });
   }
 );
 module.exports = router;

@@ -13,7 +13,7 @@ const usersSchema = new Schema(
     },
     age: {
       type: String,
-      required: true,
+      required: false,
     },
     email: {
       type: String,
@@ -21,7 +21,7 @@ const usersSchema = new Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   { timestamps: true }
@@ -34,7 +34,7 @@ usersSchema.pre("save", async function (next) {
   }
   try {
     const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(user.password, salt);
+    const hash = bcrypt.hash(user.password, salt);
 
     user.password = hash;
   } catch (e) {

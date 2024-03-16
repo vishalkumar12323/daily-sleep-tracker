@@ -37,6 +37,10 @@ function AuthProvider({ children }) {
     }
   }
 
+  function logInWithGoogle() {
+    window.location.href = "http://localhost:8081/api/auth/google";
+  }
+
   return (
     <authContext.Provider
       value={{
@@ -46,6 +50,7 @@ function AuthProvider({ children }) {
         storeToken,
         logOut,
         getEntries,
+        logInWithGoogle,
       }}
     >
       {children}
