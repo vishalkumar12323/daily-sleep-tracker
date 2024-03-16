@@ -12,10 +12,10 @@ const {
   signInNewUser,
   loginUser,
   getEntries,
+  logInUserWithGoogle,
 } = require("../controllers/index");
 
 const router = express.Router();
-const CLIENT_URL = "http://localhost:5173";
 
 router.get("/entries", authentication, getEntries);
 
@@ -37,8 +37,6 @@ router.get(
 router.get(
   "/auth/google/home",
   passport.authenticate("google", { session: false }),
-  (req, res) => {
-    res.status(200).json({ token: req.user, message: "Successfully login" });
-  }
+  logInUserWithGoogle
 );
 module.exports = router;

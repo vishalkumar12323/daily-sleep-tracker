@@ -57,11 +57,29 @@ const loginUser = async (req, res) => {
   }
 };
 
+// login user via google.
+const logInUserWithGoogle = async (req, res) => {
+  const user = req.user;
+  try {
+    const newUser = await new User({
+      name: user.name,
+      email: user.email,
+    });
+
+    const token = createToken({ id: newUser.id, email: newUser.email });
+    await newUser.save();
+    res.status(200).redirect(`http://localhost:5173/signup?token=${token}`);
+  } catch (e) {
+    const message = "Internal Server Error";
+    res.status(500).redirect(`http://localhost:5173/signup?message=${message}`);
+  }
+};
+
 // create new entry and store into database
 const createNewEntry = async (req, res) => {
   const { date, sleepTime, wakeUpTime } = req.body;
   try {
-    const newEntry = await SleepRecord({
+    const newEntry = await new SleepRecord({
       date,
       sleepTime,
       wakeUpTime,
@@ -98,4 +116,10 @@ const getEntries = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-module.exports = { signInNewUser, createNewEntry, loginUser, getEntries };
+module.exports = {
+  signInNewUser,
+  createNewEntry,
+  loginUser,
+  getEntries,
+  logInUserWithGoogle,
+};

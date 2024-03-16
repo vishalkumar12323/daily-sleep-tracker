@@ -4,11 +4,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { connectDB } = require("./configs/db");
 const router = require("./routes/router");
+const passport = require("passport");
 const { handleError } = require("./middlewares/handleError");
 const { GoogleAuthentication } = require("./services/googleAuth");
 const app = express();
 const port = process.env.PORT || 8081;
 
+app.use(passport.initialize());
 GoogleAuthentication();
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));

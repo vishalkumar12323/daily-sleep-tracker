@@ -1,10 +1,7 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const { createToken } = require("../services/auth");
 
 const GoogleAuthentication = () => {
-  app.use(passport.initialize());
-
   passport.use(
     new GoogleStrategy(
       {
@@ -13,12 +10,11 @@ const GoogleAuthentication = () => {
         callbackURL: "http://localhost:8081/api/auth/google/home",
       },
       (accessToken, refreshToken, profile, cb) => {
-        const token = createToken({
-          id: profile.id,
+        const user = {
           name: profile.displayName,
           email: profile.emails[0].value,
-        });
-        return cb(null, token);
+        };
+        return cb(null, user);
       }
     )
   );

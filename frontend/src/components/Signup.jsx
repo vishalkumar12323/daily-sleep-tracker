@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import googleIcon from "/assets/google.svg";
 import { Inputs } from "../components/Inputs";
 import { useAuth } from "../authentication/auth";
@@ -16,7 +16,7 @@ const user = {
 const Signup = () => {
   const [formData, setFormData] = useState(user);
   const navigate = useNavigate();
-  const { setToken, storeToken, logInWithGoogle } = useAuth();
+  const { setToken, storeToken } = useAuth();
   const handleDataChange = (e) => {
     const { name, value } = e.target;
     setFormData((previouseValue) => {
@@ -27,7 +27,6 @@ const Signup = () => {
     });
   };
 
-  // console.log(setToken.toString());
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -52,6 +51,28 @@ const Signup = () => {
     setFormData(user);
   };
 
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return "";
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+  function logInWithGoogle() {
+    window.location.href = "http://localhost:8081/api/auth/google";
+  }
+
+  useEffect(() => {
+    const token = getParameterByName("token");
+    if (token) {
+      storeToken(token);
+      toast.success("Successfully login");
+      navigate("/");
+    }
+  }, []);
   return (
     <>
       <div className="container">

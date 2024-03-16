@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useState, useEffect } from "react";
+import React, { useContext, createContext, useState } from "react";
 import axios from "axios";
 
 const authContext = createContext(null);
@@ -30,15 +30,10 @@ function AuthProvider({ children }) {
       const { data } = await axios.get("http://localhost:8081/api/entries", {
         headers: { Authorization: `Bearer ${token}` },
       });
-
       return data;
     } catch (e) {
       console.log(e);
     }
-  }
-
-  function logInWithGoogle() {
-    window.location.href = "http://localhost:8081/api/auth/google";
   }
 
   return (
@@ -50,7 +45,6 @@ function AuthProvider({ children }) {
         storeToken,
         logOut,
         getEntries,
-        logInWithGoogle,
       }}
     >
       {children}

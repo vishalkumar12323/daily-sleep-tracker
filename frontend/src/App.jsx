@@ -8,9 +8,11 @@ import { Home } from "./components/Home";
 import { Error } from "./components/Error";
 import { NewEntry } from "./components/NewEntry";
 import { Login } from "./components/Login";
+import { useAuth } from "./authentication/auth";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const { token } = useAuth();
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,7 +30,10 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/splash" element={<SplashScreen />} />
-            <Route path="/new-entry" element={<NewEntry />} />
+            <Route
+              path="/new-entry"
+              element={token ? <NewEntry /> : <Signup />}
+            />
             <Route path="*" element={<Error />} />
           </Routes>
         </BrowserRouter>
